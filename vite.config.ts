@@ -17,10 +17,10 @@ export default defineConfig({
       clientPort: 443,
       // Don't validate the host
       host: 'localhost',
-      // Disable overlay
-      overlay: false
+      // Enable overlay for better debugging
+      overlay: true
     },
-    // Allow both blink.new domains and localhost
-    allowedHosts: ['.blink.new', 'localhost', '127.0.0.1']
+    // Allow both blink.new domains and any localhost subdomains
+    allowedHosts: ['.blink.new', '.localhost', 'localhost', '127.0.0.1']
   }
 })
