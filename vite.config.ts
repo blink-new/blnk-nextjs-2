@@ -5,26 +5,34 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    // Allow connections from all hosts
-    host: '0.0.0.0',
-    // Ensure proper port
     port: 3000,
-    // Enable CORS
+    strictPort: false, // Allow fallback to other ports if 3000 is in use
+    host: '0.0.0.0', // Listen on all interfaces
     cors: true,
-    // Configure HMR
-    hmr: {
-      // Use WebSocket for reliable connections
-      protocol: 'ws',
-      // Use the host's port 443 for WebSocket
-      clientPort: 443,
-      // Ensures HMR WebSocket server is externally accessible
-      host: '0.0.0.0',
-      // Enable overlay for better debugging
-      overlay: true,
-      // Increases connection timeout for stability
-      timeout: 30000
+    headers: {
+      'Access-Control-Allow-Origin': '*',
     },
-    // Specifically allow all blink.new domains
-    allowedHosts: ['.blink.new', 'localhost', '127.0.0.1']
+    watch: {
+      usePolling: true, // Better for containerized environments
+    },
+    hmr: {
+      // HMR Configuration for e2b sandbox
+      protocol: 'ws', // Use WebSocket protocol
+      host: '0.0.0.0', // Match the network interface
+      port: 3000, // Same as server port
+      clientPort: 3000, // Important for proper client connections
+      path: '/hmr/', // Specific path for HMR WebSockets
+      timeout: 60000, // Increase timeout for slow connections
+      overlay: true // Show error overlay for easier debugging
+    },
+    allowedHosts: ['all'] // Allow all hosts
+  },
+  preview: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
   }
 })
