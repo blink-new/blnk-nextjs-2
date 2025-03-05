@@ -4,32 +4,19 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  css: {
-  },
   server: {
-    port: 3000,
-    strictPort: true,
-    host: true,
-    cors: true,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    watch: {
-      usePolling: true,
-    },
+    // Ensure HMR works properly in the Blink environment
     hmr: {
-      clientPort: 443,
-      host: 'localhost'
+      // Use the current host for WebSocket connections
+      host: 'localhost',
+      // Use secure WebSocket if needed
+      protocol: 'ws',
+      // Disable strict port checking
+      clientPort: null
     },
-    allowedHosts: ['.blink.new']
-  },
-  preview: {
-    port: 3000,
-    strictPort: true,
-    host: true,
-  },
-  build: {
-    outDir: 'dist',
-    sourcemap: true,
+    // Allow connections from all hosts
+    host: '0.0.0.0',
+    // Ensure proper port
+    port: 3000
   }
 })
