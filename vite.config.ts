@@ -9,16 +9,9 @@ export default defineConfig({
     host: '0.0.0.0',
     // Ensure proper port
     port: 3000,
-    // Configure HMR
-    hmr: {
-      // Use secure WebSocket
-      protocol: 'wss',
-      // Use the host's port 443 for WebSocket
-      clientPort: 443,
-      // Don't validate the host
-      host: 'localhost'
-    },
-    // Specifically allow all blink.new domains
-    allowedHosts: ['.blink.new']
+    // Disable HMR to avoid WebSocket connection issues
+    hmr: false,
+    // Allow all hosts
+    allowedHosts: 'all'
   }
 })
