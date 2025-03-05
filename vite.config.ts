@@ -9,18 +9,22 @@ export default defineConfig({
     host: '0.0.0.0',
     // Ensure proper port
     port: 3000,
+    // Enable CORS
+    cors: true,
     // Configure HMR
     hmr: {
-      // Use secure WebSocket
-      protocol: 'wss',
+      // Use WebSockets for reliable connections
+      protocol: 'ws',
       // Use the host's port 443 for WebSocket
       clientPort: 443,
-      // Don't validate the host
-      host: 'localhost',
+      // Ensures HMR WebSocket server is externally accessible
+      host: '0.0.0.0',
       // Enable overlay for better debugging
-      overlay: true
+      overlay: true,
+      // Increases connection timeout for stability
+      timeout: 30000
     },
-    // Allow both blink.new domains and any localhost subdomains
-    allowedHosts: ['.blink.new', '.localhost', 'localhost', '127.0.0.1']
+    // Allow both blink.new domains and localhost
+    allowedHosts: ['.blink.new', 'localhost', '127.0.0.1']
   }
 })
