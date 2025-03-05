@@ -20,7 +20,7 @@ export default defineConfig({
       // Disable overlay
       overlay: false
     },
-    // Allow all hosts including blink.new domains
-    allowedHosts: 'all'
+    // Allow both blink.new domains and localhost
+    allowedHosts: ['.blink.new', 'localhost', '127.0.0.1']
   }
 })
