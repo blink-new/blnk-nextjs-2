@@ -53,9 +53,15 @@
   * {
     border-color: hsl(var(--border));
   }
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: black;
+    color: white;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-} 
+}
