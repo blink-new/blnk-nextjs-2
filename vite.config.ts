@@ -13,7 +13,7 @@ export default defineConfig({
     cors: true,
     // Configure HMR
     hmr: {
-      // Use WebSockets for reliable connections
+      // Use WebSocket for reliable connections
       protocol: 'ws',
       // Use the host's port 443 for WebSocket
       clientPort: 443,
@@ -24,7 +24,7 @@ export default defineConfig({
       // Increases connection timeout for stability
       timeout: 30000
     },
-    // Allow both blink.new domains and localhost
+    // Specifically allow all blink.new domains
     allowedHosts: ['.blink.new', 'localhost', '127.0.0.1']
   }
 })
