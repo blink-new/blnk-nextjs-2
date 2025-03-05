@@ -25,7 +25,7 @@ export default defineConfig({
       timeout: 60000, // Increase timeout for slow connections
       overlay: true // Show error overlay for easier debugging
     },
-    allowedHosts: ['all'] // Allow all hosts
+    allowedHosts: ['all', '.blink.new'] // Allow all hosts and specifically .blink.new
   },
   preview: {
     port: 3000,
